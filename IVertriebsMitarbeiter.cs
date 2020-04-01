@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace SAEL_Vertriebsmitarbeiter
 {
-    interface IVertriebsMitarbeiter : IMitarbeiter
+    interface IVertriebsmitarbeiter : IMitarbeiter
     {
-        double getFixGehalt();
-        void setFixGehalt(double betrag);
-        double ermittleGehalt(double umsatz);
+        void setUmsatz(double betrag);
+        
+        void setProzent(int prozent);
+
+        void setGrenze(double betrag);
     }
 }

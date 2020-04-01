@@ -6,30 +6,46 @@ using System.Threading.Tasks;
 
 namespace SAEL_Vertriebsmitarbeiter
 {
-    public class VertriebsMitarbeiter : Mitarbeiter, IVertriebsMitarbeiter
+    public class Vertriebsmitarbeiter : Mitarbeiter, IVertriebsmitarbeiter
     {
-        private double fixGehalt;
+        private double umsatz;
+        private int prozent;
+        private double grenze;
 
-        public VertriebsMitarbeiter(int nr, string name, double betrag, double urlaubsgeld) : base(nr, name, urlaubsgeld)
+        public Vertriebsmitarbeiter(int nr, string name, double gehalt) : base(nr, name, gehalt)
         {
-            this.persNr = nr;
+            this.personalNummer = nr;
             this.name = name;
-            this.fixGehalt = betrag;
+            this.grundGehalt = gehalt;
         }
 
-        public double getFixGehalt()
+        public void setUmsatz(double betrag)
         {
-            return this.fixGehalt;
+            this.umsatz = betrag;
         }
 
-        public void setFixGehalt(double betrag)
+        public void setProzent(int prozent)
         {
-            this.fixGehalt = betrag;
+            this.prozent = prozent;
         }
 
-        public double ermittleGehalt(double umsatz)
+        public void setGrenze(double betrag)
         {
-            return this.fixGehalt + umsatz * 0.01;
+            this.grenze = betrag;
+        }
+
+        public override double ermittleGehalt()
+        {
+            double umsatzprovision = 0;
+
+            if(this.umsatz > this.grenze)
+            {
+                umsatzprovision = umsatz * prozent / 100;
+            }
+
+            double gehalt = this.grundGehalt + umsatzprovision;
+
+            return gehalt;
         }
     }
 }

@@ -8,7 +8,10 @@ namespace SAEL_Vertriebsmitarbeiter
 {
     interface IMitarbeiter
     {
-        int getPersNr();
+        int getPersonalnummer();
         string getName();
+        void setName(string name);
+        void setGrundgehalt(double betrag);
+        abstract double ermittleGehalt();
     }
 }
